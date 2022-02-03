@@ -45,7 +45,6 @@ function App() {
     d3.csv(tokenData).then((csvAsArray) => {
       const getOnlyDomainIsPolkaStarter = (transactions) => {
         const domainIsPolkaStarter = new Set([POLKASTARTER]);
-        const tokensWithPolkastarter = [];
 
         let toJump1 = { source: POLKASTARTER_TITLE, target: JUMP_1, value: 0 };
         let toJump2 = { source: JUMP_1, target: JUMP_2, value: 0 };
@@ -64,7 +63,6 @@ function App() {
                 toPancakeSwap.value += turnToValidData(transaction.Quantity);
               }
             }
-            tokensWithPolkastarter.push(convertData(transaction));
           }
         });
 
@@ -75,8 +73,6 @@ function App() {
       };
 
       const tokensWithPolkaStarter = getOnlyDomainIsPolkaStarter(csvAsArray);
-
-      console.log(tokensWithPolkaStarter);
 
       const sankeyChart = SankeyChart(
         { links: tokensWithPolkaStarter },
@@ -103,7 +99,7 @@ function App() {
     };
   }, []);
 
-  return <div id={"sankey-chart"} ref={chartRef}></div>;
+  return <div id={"sankey-chart"} ref={chartRef} />;
 }
 
 export default App;
