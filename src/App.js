@@ -1,6 +1,4 @@
-import logo from "./logo.svg";
 import * as d3 from "d3";
-import "./App.css";
 import { useEffect, useRef } from "react";
 import tokenData from "./data/quidd-bsc-transfers-0x7961Ade0a767c0E5B67Dd1a1F78ba44F727642Ed.csv";
 import { SankeyChart, testData, testData2, testData3 } from "./sankey-create";
@@ -42,6 +40,7 @@ function App() {
 
   useEffect(() => {
     let svgElement;
+    let chartRefInsideEffect = chartRef;
 
     d3.csv(tokenData).then((csvAsArray) => {
       const getOnlyDomainIsPolkaStarter = (transactions) => {
@@ -96,11 +95,11 @@ function App() {
       );
 
       svgElement = sankeyChart;
-      chartRef.current.append(sankeyChart);
+      chartRefInsideEffect.current.append(sankeyChart);
     });
 
     return () => {
-      chartRef.current.remove(svgElement);
+      chartRefInsideEffect.current.remove(svgElement);
     };
   }, []);
 

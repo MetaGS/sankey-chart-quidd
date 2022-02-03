@@ -9,10 +9,7 @@ export function SankeyChart(
   {
     format = ",", // a function or format specifier for values in titles
     align = "justify", // convenience shorthand for nodeAlign
-    nodeId = (d) => {
-      //   console.log(d);
-      return d.id;
-    }, // given d in nodes, returns a unique identifier (string)
+    nodeId = (d) => d.id, // given d in nodes, returns a unique identifier (string)
     nodeGroup, // given d in nodes, returns an (ordinal) value for color
     nodeGroups, // an array of ordinal values representing the node groups
     nodeLabel, // given d in (computed) nodes, text to label the associated rect
